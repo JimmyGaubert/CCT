@@ -24,9 +24,7 @@ We wondered how to make the use of the tool easy. Instead of giving you a list o
 
 1- Download this repo and place it where you want.
 
-2- Run the Install_NodeJS.bat file to install Node.js.
-
-3- Once it is installed, run the Crossout_Chat_Translator.bat file
+2- Run the Crossout_Chat_Translator.bat file
 
 4- Enjoy!
 
