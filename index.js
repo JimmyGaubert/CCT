@@ -14,8 +14,11 @@ if errorlevel 1 (
 echo.
 
 echo | set /p dummy="Refreshing environment variables from registry for cmd.exe. Please wait..."
-
 goto main
+
+:: Source of :SetFromReg, :GetRegEnv and :main functions 
+:: https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
+:: This allows to use nodejs and npm cli commands without asking the user to restart the bat after installing node.js
 
 :: Set one environment variable from registry key
 :SetFromReg
@@ -99,7 +102,7 @@ fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs`, (error,
     fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs/${folders[(folders.length - 1)]}`, (error, list) => {
         if (error) { return console.error(error); }
         if (!list.find(file => file === 'chat.log')) return console.log("chat.log not found")
-	console.log('\x1b[31m%s\x1b[0m', 'https://github.com/JimmyGaubert/Crossout-Chat-Translator')
+	    console.log('\x1b[31m%s\x1b[0m', 'https://github.com/JimmyGaubert/Crossout-Chat-Translator')
         console.log('\x1b[33m%s\x1b[0m', 'This app was made by Earlam#3915 and Quantum#4444. Enjoy !')
         console.log('\x1b[32m%s\x1b[0m', 'Waiting for messages in game chat... :)')
         let linesArray = []

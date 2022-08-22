@@ -11,18 +11,20 @@ This app uses [Node.js](https://nodejs.org) and its included [fs](https://nodejs
 
 then the [@iamtraction/google-translate](https://github.com/iamtraction/google-translate) library to translate these messages, using the google's api. 
 
+It reads the game logs present in /%Documents%/My games/Crossout/Logs, and translate them.
+
 Then it just outpout the translations to the windows terminal ^^
 
 The application does not modify any game files... Great, right?
 
 
 ### Easy to use!
-We wondered how to make the use of the tool easy. Instead of giving you a list of commands to type, we've created two .bat files that do it for you. No dev or admin skills are required to use it.
+We wondered how to make the use of the tool easy. Instead of giving you a list of commands to type, we've created a .bat file that do it for you. No dev or admin skills are required to use it. You can use this app in one clic :)
 
 
 ### Installation :
 
-1- Download this repo and place it where you want.
+1- Download, unzip this repo then place it where you want
 
 2- Run the Crossout_Chat_Translator.bat file
 
