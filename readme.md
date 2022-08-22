@@ -26,7 +26,7 @@ We wondered how to make the use of the tool easy. Instead of giving you a list o
 
 2- Run the Crossout_Chat_Translator.bat file
 
-4- Enjoy!
+3- Enjoy!
 
 
 ### Authors
