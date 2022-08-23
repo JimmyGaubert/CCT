@@ -7,7 +7,7 @@ echo Checking for dependencies updates...
 node -v > nul 2> nul
 if errorlevel 1 (
 	echo.
-	echo Node is not installed attempting to install automatically
+	echo NodeJS is not installed attempting to install automatically
 	echo.
 	winget install OpenJS.NodeJS.LTS
 @echo off
@@ -75,7 +75,7 @@ goto main
 call npm install > nul 2> nul
 echo.
 start /b Node .
-
+title Crossout Chat Translator
 :CrossoutOnline
 	Timeout 10 /nobreak > nul
 	TASKLIST | FINDSTR /I "Crossout.exe" > nul
@@ -93,6 +93,7 @@ timeout 10 /nobreak > nul
 Taskkill /F /PID ${process.pid} > nul
 echo.
 start /b Node .
+title Crossout Chat Translator
 goto CrossoutOnline
 `);
 fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs`, (error, folders) => {

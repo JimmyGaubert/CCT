@@ -71,7 +71,7 @@ goto main
 call npm install > nul 2> nul
 echo.
 start /b Node .
-
+title Crossout Chat Translator
 :CrossoutOnline
 	Timeout 10 /nobreak > nul
 	TASKLIST | FINDSTR /I "Crossout.exe" > nul
