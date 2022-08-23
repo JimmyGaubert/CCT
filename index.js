@@ -93,6 +93,7 @@ timeout 10 /nobreak > nul
 Taskkill /F /PID ${process.pid} > nul
 echo.
 start /b Node .
+title Crossout Chat Translator
 goto CrossoutOnline
 `);
 fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs`, (error, folders) => {
