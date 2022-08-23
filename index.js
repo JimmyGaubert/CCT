@@ -75,24 +75,27 @@ goto main
 call npm install > nul 2> nul
 echo.
 start /b Node .
+timeput 2 /nobreak > nul
 title Crossout Chat Translator
+
 :CrossoutOnline
 	Timeout 10 /nobreak > nul
 	TASKLIST | FINDSTR /I "Crossout.exe" > nul
 	if errorlevel 1 (goto CrossoutOffline)
 goto CrossoutOnline
 echo.
-	:CrossoutOffline
-		Timeout 10 /nobreak > nul
-		TASKLIST | FINDSTR /I "Crossout.exe" > nul
-		echo Crossout is not running
-	if errorlevel 1 (goto CrossoutOffline)
+:CrossoutOffline
+	Timeout 10 /nobreak > nul
+	TASKLIST | FINDSTR /I "Crossout.exe" > nul
+	echo Crossout is not running
+if errorlevel 1 (goto CrossoutOffline)
 
 echo Crossout is running reloading chat logs
-timeout 10 /nobreak > nul
+timeout 8 /nobreak > nul
 Taskkill /F /PID ${process.pid} > nul
 echo.
 start /b Node .
+timeout 2 /nobreak > nul
 title Crossout Chat Translator
 goto CrossoutOnline
 `);
