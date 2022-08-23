@@ -1,8 +1,8 @@
 const fs = require("fs");
 const translate = require('@iamtraction/google-translate');
 if (process.platform !== 'win32') return console.log('Sorry... This tool can only be used on Windows OS.')
-fs.writeFileSync("Crossout_Chat_Translator.bat", 
-`@echo off
+fs.writeFileSync("Crossout_Chat_Translator.bat",
+    `@echo off
 echo Checking for dependencies updates...
 node -v > nul 2> nul
 if errorlevel 1 (
@@ -14,11 +14,9 @@ if errorlevel 1 (
 echo.
 
 echo | set /p dummy="Refreshing environment variables from registry for cmd.exe. Please wait..."
-goto main
 
-:: Source of :SetFromReg, :GetRegEnv and :main functions 
-:: https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
-:: This allows to use nodejs and npm cli commands without asking the user to restart the bat after installing node.js
+:: This allows to use node.js and npm cli commands without asking the user to restart the bat after installing node.js https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
+goto main
 
 :: Set one environment variable from registry key
 :SetFromReg
@@ -77,7 +75,7 @@ goto main
 call npm install > nul 2> nul
 echo.
 start /b Node .
-title Crossout Chat Translator
+
 :CrossoutOnline
 	Timeout 10 /nobreak > nul
 	TASKLIST | FINDSTR /I "Crossout.exe" > nul
@@ -102,7 +100,7 @@ fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs`, (error,
     fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs/${folders[(folders.length - 1)]}`, (error, list) => {
         if (error) { return console.error(error); }
         if (!list.find(file => file === 'chat.log')) return console.log("chat.log not found")
-	    console.log('\x1b[31m%s\x1b[0m', 'https://github.com/JimmyGaubert/Crossout-Chat-Translator')
+        console.log('\x1b[31m%s\x1b[0m', 'https://github.com/JimmyGaubert/Crossout-Chat-Translator')
         console.log('\x1b[33m%s\x1b[0m', 'This app was made by Earlam#3915 and Quantum#4444. Enjoy !')
         console.log('\x1b[32m%s\x1b[0m', 'Waiting for messages in game chat... :)')
         let linesArray = []
@@ -123,18 +121,23 @@ fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs`, (error,
                             for (let i = 0; i < linesArray.length; i++) {
                                 if (linesArray[i] === lastline) { linesArray.splice(i, 1) }
                             }
-                        }, 500);
+                        }, 500); 
+                        const logstimer = lastline.slice(0, 5);
+                        let playername;
+                        ((lastline.split('[')[1].split(' #')[0].trim().length) % 2 == 0) ? playername = lastline.split('[')[1].split(' #')[0].padEnd(16, ' \u200b ') : playername = lastline.split('[')[1].split(' #')[0].padEnd(16, ' \u200b ')+" ";
                         translate(lastline.split('] ')[1], { to: 'en' }).then(res => {
-                            if ((/PRIVATE/).test(lastline)) {
-                                console.log('\x1b[95m%s\x1b[0m', `${(lastline).split('] ')[0].replace('    ', ' ')}] ${res.text}`)
+                            if ((/PRIVATE From/).test(lastline)) {
+                                console.log('\x1b[95m%s\x1b[0m', `${logstimer}|FROM \u200b |${playername}| ${res.text.replace('#^#^', '^^')}`)
+                            } else if ((/PRIVATE To/).test(lastline)) {
+                                console.log('\x1b[95m%s\x1b[0m', `${logstimer}|TO \u200b \u200b |${playername}| ${res.text.replace('#^#^', '^^')}`)
                             } else if ((/team_/).test(lastline)) {
-                                console.log('\x1b[36m%s\x1b[0m', `${(lastline).split('] ')[0].replace('    ', ' ')}] ${res.text}`)
+                                console.log('\x1b[36m%s\x1b[0m', `${logstimer}|TEAM \u200b |${playername}| ${res.text.replace('#^#^', '^^')}`)
                             } else if ((/clan_/).test(lastline)) {
-                                console.log('\x1b[32m%s\x1b[0m', `${(lastline).split('] ')[0].replace('    ', ' ')}] ${res.text}`)
+                                console.log('\x1b[32m%s\x1b[0m', `${logstimer}|CLAN \u200b |${playername}| ${res.text.replace('#^#^', '^^')}`)
                             } else if ((/party_/).test(lastline) || (/custom_game/).test(lastline)) {
-                                console.log('\x1b[34m%s\x1b[0m', `${(lastline).split('] ')[0].replace('    ', ' ')}] ${res.text}`)
+                                console.log('\x1b[34m%s\x1b[0m', `${logstimer}|PARTY \u200b |${playername}| ${res.text.replace('#^#^', '^^')}`)
                             } else {
-                                console.log(`${(lastline).split('] ')[0].replace('    ', ' ')}] ${res.text}`)
+                                console.log(`${logstimer}|GENERAL|${playername}| ${res.text.replace('#^#^', '^^')}`)
                             }
                         }).catch(err => {
                             console.error(err);

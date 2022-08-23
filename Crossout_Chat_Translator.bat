@@ -3,18 +3,16 @@ echo Checking for dependencies updates...
 node -v > nul 2> nul
 if errorlevel 1 (
 	echo.
-	echo Nodejs is not installed. Attempting to it install automatically ...
+	echo Node is not installed attempting to install automatically
 	echo.
 	winget install OpenJS.NodeJS.LTS
 @echo off
 echo.
 
 echo | set /p dummy="Refreshing environment variables from registry for cmd.exe. Please wait..."
-goto main
 
-:: Source of :SetFromReg, :GetRegEnv and :main functions 
-:: https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
-:: This allows to use node.js and npm cli commands without asking the user to restart the bat after installing node.js
+:: This allows to use node.js and npm cli commands without asking the user to restart the bat after installing node.js https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
+goto main
 
 :: Set one environment variable from registry key
 :SetFromReg
@@ -73,7 +71,7 @@ goto main
 call npm install > nul 2> nul
 echo.
 start /b Node .
-title Crossout Chat Translator
+
 :CrossoutOnline
 	Timeout 10 /nobreak > nul
 	TASKLIST | FINDSTR /I "Crossout.exe" > nul
@@ -88,7 +86,7 @@ echo.
 
 echo Crossout is running reloading chat logs
 timeout 10 /nobreak > nul
-Taskkill /F /PID 29300 > nul
+Taskkill /F /PID 58300 > nul
 echo.
 start /b Node .
 goto CrossoutOnline
