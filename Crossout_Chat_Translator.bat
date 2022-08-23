@@ -3,15 +3,18 @@ echo Checking for dependencies updates...
 node -v > nul 2> nul
 if errorlevel 1 (
 	echo.
-	echo Node is not installed attempting to install automatically
+	echo Nodejs is not installed. Attempting to install automatically ...
 	echo.
 	winget install OpenJS.NodeJS.LTS
 @echo off
 echo.
 
 echo | set /p dummy="Refreshing environment variables from registry for cmd.exe. Please wait..."
-
 goto main
+
+:: Source of :SetFromReg, :GetRegEnv and :main functions 
+:: https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
+:: This allows to use node.js and npm cli commands without asking the user to restart the bat after installing node.js
 
 :: Set one environment variable from registry key
 :SetFromReg
