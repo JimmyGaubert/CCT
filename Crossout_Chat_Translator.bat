@@ -3,7 +3,7 @@ echo Checking for dependencies updates...
 node -v > nul 2> nul
 if errorlevel 1 (
 	echo.
-	echo Nodejs is not installed. Attempting to install automatically ...
+	echo NodeJS is not installed attempting to install automatically
 	echo.
 	winget install OpenJS.NodeJS.LTS
 @echo off
@@ -88,7 +88,7 @@ if errorlevel 1 (goto CrossoutOffline)
 
 echo Crossout is running reloading chat logs
 timeout 8 /nobreak > nul
-Taskkill /F /PID ${process.pid} > nul
+Taskkill /F /PID 4076 > nul
 echo.
 start /b Node .
 timeout 2 /nobreak > nul
