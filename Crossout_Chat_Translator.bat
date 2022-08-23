@@ -71,7 +71,7 @@ goto main
 call npm install > nul 2> nul
 echo.
 start /b Node .
-timeput 2 /nobreak > nul
+timeout 2 /nobreak > nul
 title Crossout Chat Translator
 
 :CrossoutOnline
