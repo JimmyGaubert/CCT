@@ -10,11 +10,9 @@ if errorlevel 1 (
 echo.
 
 echo | set /p dummy="Refreshing environment variables from registry for cmd.exe. Please wait..."
-goto main
 
-:: Source of :SetFromReg, :GetRegEnv and :main functions 
-:: https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
-:: This allows to use node.js and npm cli commands without asking the user to restart the bat after installing node.js
+:: This allows to use node.js and npm cli commands without asking the user to restart the bat after installing node.js https://github.com/chocolatey/choco/blob/master/src/chocolatey.resources/redirects/RefreshEnv.cmd
+goto main
 
 :: Set one environment variable from registry key
 :SetFromReg
@@ -88,7 +86,7 @@ echo.
 
 echo Crossout is running reloading chat logs
 timeout 10 /nobreak > nul
-Taskkill /F /PID 29300 > nul
+Taskkill /F /PID 58300 > nul
 echo.
 start /b Node .
 goto CrossoutOnline
