@@ -3,7 +3,7 @@ echo Checking for dependencies updates...
 node -v > nul 2> nul
 if errorlevel 1 (
 	echo.
-	echo Node is not installed attempting to install automatically
+	echo Nodejs is not installed. Attempting to install automatically ...
 	echo.
 	winget install OpenJS.NodeJS.LTS
 @echo off
