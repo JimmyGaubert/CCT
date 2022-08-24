@@ -92,5 +92,4 @@ Taskkill /F /PID 4076 > nul
 echo.
 start /b Node .
 timeout 2 /nobreak > nul
-title Crossout Chat Translator
 goto CrossoutOnline
