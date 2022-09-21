@@ -103,7 +103,7 @@ fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs`, (error,
     fs.readdir(`C:${process.env.HOMEPATH}/Documents/My games/Crossout/Logs/${folders[(folders.length - 1)]}`, (error, list) => {
         if (error) { return console.error(error); }
         if (!list.find(file => file === 'chat.log')) return console.log("chat.log not found")
-        console.log('\x1b[31m%s\x1b[0m', 'https://github.com/JimmyGaubert/Crossout-Chat-Translator')
+        console.log('\x1b[31m%s\x1b[0m', 'https://github.com/JimmyGaubert/CCT')
         console.log('\x1b[33m%s\x1b[0m', 'This app was made by Earlam#3915 and Quantum#4444. Enjoy !')
         console.log('\x1b[32m%s\x1b[0m', 'Waiting for messages in game chat... :)')
         let linesArray = []
